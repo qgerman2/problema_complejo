@@ -9,6 +9,8 @@ from mavsdk.mission import (MissionItem, MissionPlan)
 
 async def run():
 
+    # CONECTAR
+
     drone = System(mavsdk_server_address='localhost', port=50051)
     await drone.connect(system_address="udp://:14540")
 
@@ -26,10 +28,19 @@ async def run():
             print("-- Global position estimate OK")
             break
 
-    # Crear mision
+    # CREAR MISION
+
+    # obtener position actual
+    pos = await drone.telemetry.position().__anext__()
+
+    # crear waypoints de mision
+    # https://mavlink.io/en/services/mission.html
     mission_items = []
-    # Accion de despegue
-    # http://mavsdk-python-docs.s3-website.eu-central-1.amazonaws.com/plugins/mission.html#mavsdk.mission.MissionItem
+
+    # WAYPOINT NORMAL
+    # necesario para que ardupilot no se enoje
+    # no se por que
+
     mission_items.append(mission_raw.MissionItem(
         seq=0,
         frame=0,
@@ -40,11 +51,14 @@ async def run():
         param2=0.0,
         param3=0.0,
         param4=0.0,
-        x=-367818897,
-        y=-730684843,
-        z=16.489999771118164,
+        x=int(pos.latitude_deg*10**7),
+        y=int(pos.longitude_deg*10**7),
+        z=pos.absolute_altitude_m,
         mission_type=0
     ))
+
+    # DESPEGUE
+    # https://mavlink.io/en/messages/common.html#MAV_CMD_NAV_TAKEOFF
 
     mission_items.append(mission_raw.MissionItem(
         seq=1,
@@ -62,6 +76,9 @@ async def run():
         mission_type=0
     ))
 
+    # ATERRIZAJE
+    # https://mavlink.io/en/messages/common.html#MAV_CMD_NAV_LAND
+
     mission_items.append(mission_raw.MissionItem(
         seq=2,
         frame=3,
@@ -72,17 +89,17 @@ async def run():
         param2=0.0,
         param3=0.0,
         param4=1.0,
-        x=-367818897,
-        y=-730684843,
-        z=0.0,
+        x=int(pos.latitude_deg*10**7),
+        y=int(pos.longitude_deg*10**7),
+        z=0,
         mission_type=0
     ))
 
     print("-- Uploading mission")
     await drone.mission_raw.upload_mission(mission_items)
+
     print("-- Arming")
     await drone.action.arm()
-    await asyncio.sleep(20)
 
     print("-- Starting mission")
     await drone.mission.start_mission()
