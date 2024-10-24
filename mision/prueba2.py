@@ -34,7 +34,7 @@ async def run():
         seq=0,
         frame=0,
         command=16,
-        current=0,
+        current=1,
         autocontinue=1,
         param1=0.0,
         param2=0.0,
