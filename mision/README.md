@@ -13,6 +13,7 @@
    ```bash
     py -3.12 -m pip install mavsdk
    ``` 
+   3. Tomar nota de que version de mavsdk se instaló, es 2.8.4 al momento de escribir este documento.
 
 3. Mavproxy
 
@@ -20,16 +21,22 @@
 
 4. Mavsdk-server
 
-   1. Descargar
-   https://github.com/mavlink/MAVSDK/releases/download/v2.12.12/mavsdk-windows-x64-release.zip
-   2. Descomprimir `mav_server_bin.exe` en `C:\Users\[usuario]`
+    _(Si `mavsdk.System()` en Python funciona saltar este paso)_
 
-### Inicializar mavproxy y mavsdk-server
+   1. Revisar qué version de MAVSDK server es compatible con la libreria de Python, para la 2.8.4 es **v2.12.10**
+   https://github.com/mavlink/MAVSDK-Python/blob/2.8.4/MAVSDK_SERVER_VERSION
+
+   2. Descargar el ejecutable del servidor correspondiente (**v2.12.10**) en https://github.com/mavlink/MAVSDK/releases, para Windows es el `mavsdk-windows-x64-release.zip`
+
+   3. Extraer el `mavsdk_server_bin.exe` a `%APPDATA%\..\Local\Programs\Python\Python312\Lib\site-packages\mavsdk\bin`
+
+   4. Renombrar el archivo a `mavsdk_server.exe`
+
+
+### Inicializar mavproxy
 
 ```bash
 mavproxy --no-console --master="com28",57600 --out=udp:127.0.0.1:14560 --out=udp:127.0.0.1:14540
-
-./mavsdk_server_bin.exe -p 50051 udp://:14540
 ```
 
 ### Ejecutar script python

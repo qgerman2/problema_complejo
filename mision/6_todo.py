@@ -40,9 +40,12 @@ button.grid(row=0, column=1)
 canvas.get_tk_widget().grid(row=0, column=2)
 
 # Conexion con dron y descargar mision
+address = "tcp://:5762"
+
+
 async def conexion():
-    drone = System(mavsdk_server_address='localhost', port=50051)
-    await drone.connect(system_address="udp://:14540")
+    drone = System()
+    await drone.connect(address)
     mision = await drone.mission_raw.download_mission()
     for item in mision:
         print(item)
