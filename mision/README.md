@@ -32,12 +32,22 @@
 
    4. Renombrar el archivo a `mavsdk_server.exe`
 
+5. Mission Planner
 
-### Inicializar mavproxy
 
-```bash
-mavproxy --no-console --master="com28",57600 --out=udp:127.0.0.1:14560 --out=udp:127.0.0.1:14540
-```
+### Iniciar vehículo
+
+1. Dron simulado con Mission Planner
+
+    Abrir la pestaña `SIMULATION`, dejar vacio `Model` y seleccionar algún vehículo. Iniciara una ventana de terminal corriendo una simulación básica del vehiculo con puertos de telemetría disponibles por TCP, por defecto son `tcp://:5762` y `tcp://:5763`
+
+2. Dron simulado con X-Plane y Pixhawk en HITL
+
+    Conectar radio de telemetría y abrir salidas por IP a la conexión serial
+
+    ```bash
+    mavproxy --no-console --master="com28",57600 --out=udp:127.0.0.1:14560 --out=udp:127.0.0.1:14540
+    ```
 
 ### Ejecutar script python
 

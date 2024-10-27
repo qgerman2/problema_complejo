@@ -30,6 +30,7 @@ label.grid(row=0, column=0)
 button.grid(row=0, column=1)
 canvas.get_tk_widget().grid(row=0, column=2)
 
+
 async def printear():
     while True:
         print("hola", time.time_ns())
