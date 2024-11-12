@@ -49,3 +49,9 @@ Comenzar un vuelo en X-Plane e iniciar reproducción en el menú
 ```
 Plugins -> FlyWithLua -> FlyWithLua Macros -> datos.csv
 ```
+
+### No funciona
+
+Verificar que el archivo .csv tenga codificación UTF-8
+
+![](utf8.png)
