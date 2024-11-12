@@ -37,10 +37,15 @@ Argumentos:
 
 ### Instalar script lua
 
-Copiar archivos de la carpeta `Scripts` a `Resources/plugins/FlyWithLua/Scripts`
+Copiar librería csv de la carpeta `Modules` a `Resources/plugins/FlyWithLua/Modules`
 
-Copiar secuencia .csv a la carpeta `csv_player`
+Copiar archivos de la carpeta `Scripts` a `Resources/plugins/FlyWithLua/Scripts`
 
 ### Reproducir archivo .csv
 
-Comenzar un vuelo en X-Plane e iniciar reproducción en el menú `Plugins -> FlyWithLua -> FlyWithLua Macros -> datos.csv`
+Copiar secuencia .csv a la carpeta `Resources/plugins/FlyWithLua/Scripts/csv_player`
+
+Comenzar un vuelo en X-Plane e iniciar reproducción en el menú
+```
+Plugins -> FlyWithLua -> FlyWithLua Macros -> datos.csv
+```
