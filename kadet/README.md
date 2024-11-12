@@ -1,4 +1,4 @@
-## Reproducir entradas de radio en X-Plane
+## Reproductor de entradas de radio en X-Plane
 
 Script de Lua que reproduce los controles de radio a partir del .csv seleccionado.
 
@@ -34,3 +34,13 @@ Argumentos:
 ``"00000017.BIN"`` archivo de entrada
 
 ``nuevos_datos.csv`` archivo de salida
+
+### Instalar script lua
+
+Copiar archivos de la carpeta `Scripts` a `Resources/plugins/FlyWithLua/Scripts`
+
+Copiar secuencia .csv a la carpeta `csv_player`
+
+### Reproducir archivo .csv
+
+Comenzar un vuelo en X-Plane e iniciar reproducción en el menú `Plugins -> FlyWithLua -> FlyWithLua Macros -> datos.csv`
