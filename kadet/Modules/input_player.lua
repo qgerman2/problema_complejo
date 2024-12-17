@@ -58,7 +58,15 @@ local function play(filename)
                         -- interpolar linealmente ancho de pulso entre t-1 y t
                         local pwm = s * (csv[i] - pcsv[i]) + pcsv[i]
                         -- normalizar
-                        out[i] = map_range(1000, 2000, -1, 1, pwm)
+                        if (i == 1) then     -- aleron
+                            out[1] = map_range(982, 2006, -1, 1, pwm)
+                        elseif (i == 2) then -- elevador
+                            out[2] = map_range(1023, 2006, -1, 1, pwm)
+                        elseif (i == 3) then -- throttle
+                            out[3] = map_range(982, 2006, -1, 1, pwm)
+                        elseif (i == 4) then -- timon
+                            out[4] = map_range(982, 2006, -1, 1, pwm)
+                        end
                     end
 
                     -- escribir controles
