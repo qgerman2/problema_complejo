@@ -28,16 +28,17 @@ local function play(filename)
             -- tiempos
             if i == 1 then
                 t0_sim = get("sim/time/local_time_sec")
-                t0_csv = fields[1]
+                t0_csv = fields[1] / 1000 -- milisegundos a segundos
             end
 
+            -- EDITAR AQUI CUALES SON LAS COLUMNAS DEL JOYSTICK
             -- variables actuales
             local csv = {
-                fields[3],
-                fields[4],
-                fields[5],
-                fields[6],
-                t = fields[1] - t0_csv
+                fields[2],                      -- aleron columna 2
+                fields[4],                      -- elevador columna 4
+                fields[5],                      -- throttle columna 5
+                fields[6],                      -- timon columna 6
+                t = (fields[1] / 1000) - t0_csv -- milisegundos a segundos
             }
 
             -- iteracion con acceso a valores actuales y previos
