@@ -34,8 +34,8 @@ local function play(filename)
             -- EDITAR AQUI CUALES SON LAS COLUMNAS DEL JOYSTICK
             -- variables actuales
             local csv = {
-                fields[2],                      -- aleron columna 2
-                fields[4],                      -- elevador columna 4
+                fields[4],                      -- aleron columna 4
+                fields[2],                      -- elevador columna 2
                 fields[5],                      -- throttle columna 5
                 fields[6],                      -- timon columna 6
                 t = (fields[1] / 1000) - t0_csv -- milisegundos a segundos
